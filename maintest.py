@@ -12,12 +12,12 @@ def test():
 
 	#This tests proper movement in the positive x direction
 	print("The old x-pos of the tank is ", tank.tankRekt.x())
-	tank.move(K_LEFT)
+	tank.move(K_RIGHT)
 	print("The new x-pos of the tank is ", tank.tankRekt.x())	
 	
 	#This tests proper movement in the negative x direction
 	print("The old x-pos of the tank is ", tank.tankRect.x())
-	tank.move(K_RIGHT)
+	tank.move(K_LEFT)
 	print("The new x-pos of the tank is ", tank.tankRekt.x())	
 	
 	#This tests the upward angular movement of the shootything
