@@ -1,7 +1,9 @@
 import pygame
 import utility
+import bullet
+
 class Tank:
-    def __init__(self, x, y, img_file):
+    def __init__(self, x, y):
         """
         Creates the tank.
         args:
@@ -53,13 +55,17 @@ class Tank:
         """
         if direction == pygame.K_UP:
             self.shootyThingRect.transform.rotate(self.shootyThingImage, 1)
+            self.shootyThingRect.x -= 1
+            self.shootyThingRect.y -= 1
             angle += 1
         elif direction == pygame.K_DOWN:
             self.shootyThingRect.transform.rotate(self.shootyThingImage, -1)
+            self.shootyThingRect.x -= 1
+            self.shootyThingRect.y -= 1
             angle -= 1
         return angle
 
-    def shoot(self):
+    def shoot(self, key):
         """
             Produces a projectile and fires it. WIP.
         args:
@@ -67,3 +73,6 @@ class Tank:
         return:
                         (self) Returns the variable.
         """
+        if key == pygame.K_SPACE:
+            bulletShot = Bullet()
+            return bulletShot
