@@ -5,7 +5,7 @@ BLACK = (0,0,0)
 WHITE = (255, 255, 255)
 
 def loadImage(image):
-    filename = os.path.join
+    filename = os.path.join("foldername", image)
     image = pygame.image.load(filename).convert()
     return image, image.get_rect()
     
