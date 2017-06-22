@@ -1,4 +1,5 @@
 import pygame
+import utility
 black = (0,0,0)
 white = (255,255,255)
 class Tank:
@@ -17,10 +18,15 @@ class Tank:
                         (y) Places the tank at y.
                         (img_file) Gives the tank its sprite.
         """
-        self.rect.x = 100
-        self.rect.y = 100
+        self.tankImage, self.tankRect = utility.loadImage("myTank.jpeg")
+        self.shootyThingImage, self.shootyThingRect = utility.loadImage("myShootyThing.jpeg")
+        self.tankRect.x = 100
+        self.tankRect.y = utility.GROUND
+        self.shootyThingRect.x = 100
+        self.shootyThingRect.y = utility.GROUND
         pygame.sprite.Sprite.__init__(self)
         self.tankSpeed = 10.0
+        self.health = 50
 
     def move(self, direction):
         """
@@ -33,9 +39,27 @@ class Tank:
                         (direction) Returns the tank going in that direction
         """
         if(direction == pygame.K_LEFT):
-            self.rect.x -= self.speed
+            self.tankRect.x -= self.speed
         elif(direction == pygame.K_RIGHT):
-            self.rect.x += self.speed
+            self.tankRect.x += self.speed
+    
+    def angle(self, direction, angle):
+        """
+        Moves the shootyThing when direction is hit.
+        args:
+            param list: (self) States the variable.
+                        (direction) The direction you want the tank to go.
+        return:
+                        (self) Returns the variable.
+                        (direction) Returns the tank going in that direction
+        """
+        if direction == pygame.K_UP:
+            self.shootyThingRect.transform.rotate(self.shootyThingImage, 1)
+            angle += 1
+        elif direction == pygame.K_DOWN:
+            self.shootyThingRect.transform.rotate(self.shootyThingImage, -1)
+            angle -= 1
+        return angle
 
     def shoot(self):
         """
