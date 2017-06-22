@@ -39,9 +39,9 @@ class Tank:
                         (direction) Returns the tank going in that direction
         """
         if(direction == pygame.K_LEFT):
-            self.tankRect.x -= self.speed
+            self.tankRect.x -= self.tankspeed
         elif(direction == pygame.K_RIGHT):
-            self.tankRect.x += self.speed
+            self.tankRect.x += self.tankspeed
     
     def angle(self, direction, angle):
         """
