@@ -23,12 +23,12 @@ def test():
 	#This tests the upward angular movement of the shootything
 	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	tank.angle(K_UP)
-	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
+	print("The new x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	
 	#This tests the downward angular movement of the shootything
 	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	tank.angle(K_DOWN)
-	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
+	print("The new x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	
 	#This tests to see if the tank will move if non-essential keys are pressed
  	print("The old x-pos of the tank is ", tank.tankRect.x())
@@ -46,15 +46,15 @@ def test():
 	#This tests to see if the shootything moves if non-essential keys are pressed
 	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	tank.angle(K_V)
-	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
+	print("The new x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	
 	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	tank.angle(K_4)
-	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
+	print("The new x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	
 	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	tank.angle(K_BACKSLASH)
-	print("The old x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
+	print("The new x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	
 	#This tests to see if the tank shoots properly
 	tank.shoot(K_SPACE)
