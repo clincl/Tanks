@@ -1,4 +1,9 @@
 def test():
+	'''
+	This function contains the test code for the classes
+	Arguments: None
+	Returns: None
+	'''
 	#This tests object creation
 	tank = Tank()
 	print(type(tank))
