@@ -1,7 +1,5 @@
 import pygame
 import utility
-black = (0,0,0)
-white = (255,255,255)
 class Tank:
     def __init__(self, x, y, img_file):
         """
