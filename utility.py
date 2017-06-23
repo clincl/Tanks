@@ -10,6 +10,6 @@ def loadImage(image):
     image = pygame.image.load(filename).convert()
     return image, image.get_rect()
     
-def Terrain():
+#def Terrain():
 
-def 
+#def 
