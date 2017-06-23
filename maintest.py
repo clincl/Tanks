@@ -1,3 +1,7 @@
+import pygame
+import tank
+import bullet
+import utility
 def test():
 	'''
 	This function contains the test code for the classes
