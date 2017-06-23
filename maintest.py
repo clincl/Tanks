@@ -31,7 +31,7 @@ def test():
 	print("The new x-pos and y-pos of the tank is:", tank.shootyThingRect.x(), "and", tank.shootyThingRect.y())
 	
 	#This tests to see if the tank will move if non-essential keys are pressed
- 	print("The old x-pos of the tank is ", tank.tankRect.x())
+	print("The old x-pos of the tank is ", tank.tankRect.x())
 	tank.move(pygame.K_V)
 	print("The new x-pos of the tank is ", tank.tankRect.x())
 
