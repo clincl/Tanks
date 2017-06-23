@@ -5,18 +5,18 @@ white = (255,255,255)
 
 class Controller:
     def __init__(self, width=640, height=480):
-    """
-Initializes the screen and sets its dimensions.
+        """
+        Initializes the screen and sets its dimensions.
 
-    args:
-        param list: (self) States the variable.
-                    (width) The width.
-                    (height) The height.
-    return:
-                    (self) Returns the variable.
-                    (width)
-                    (height)
-    """
+        args:
+            param list: (self) States the variable.
+                        (width) The width.
+                        (height) The height.
+        return:
+                        (self) Returns the variable.
+                        (width)
+                        (height)
+        """
         pygame.init()
         self.width = width
         self.height = height
@@ -26,16 +26,16 @@ Initializes the screen and sets its dimensions.
         #self.sprites = pygame.sprite.RenderPlain((self.hero)+(self.enemy))
 
     def mainLoop(self):
-    """
-    Sets the background white and allows you to hold directional keys to move.
+        """
+        Sets the background white and allows you to hold directional keys to move.
 
-    args:
-        param list: (self) States the variable.
-                    (direction) The direction you want the tank to go.
-    return:
-                    (self) Returns the variable.
-                    (direction) Returns the tank going in that direction
-    """
+        args:
+            param list: (self) States the variable.
+                        (direction) The direction you want the tank to go.
+        return:
+                        (self) Returns the variable.
+                        (direction) Returns the tank going in that direction
+        """
         pygame.key.set_repeat(1,50)
         while True:
             self.background.fill(white)
