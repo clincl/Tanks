@@ -18,8 +18,8 @@ class Tank:
                         (y) Places the tank at y.
                         (img_file) Gives the tank its sprite.
         """
-        self.tankImage, self.tankRect = utility.loadImage("myTank.jpeg")
-        self.shootyThingImage, self.shootyThingRect = utility.loadImage("myShootyThing.jpeg")
+        self.tankImage, self.tankRect = utility.loadImage("myTank.jpg")
+        self.shootyThingImage, self.shootyThingRect = utility.loadImage("myShootyThing.jpg")
         self.tankRect.x = 100
         self.tankRect.y = utility.GROUND
         self.shootyThingRect.x = 100
