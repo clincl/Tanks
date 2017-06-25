@@ -1,7 +1,11 @@
 import pygame
 import tank
 
-white = (255,255,255)
+
+
+
+
+
 
 class Controller:
     def __init__(self, width=640, height=480):
@@ -20,12 +24,11 @@ Initializes the screen and sets its dimensions.
         pygame.init()
         self.width = width
         self.height = height
-        self.screen = pygame.display.set_mode((self.width, self.height))
-        self.screen = pygame.set_caption('Tanks')#Nia
+        pygame.display.set_mode((self.width, self.height))
+        pygame.display.set_caption('Tanks')#Nia
         self.screen = pygame.display.update() #Nia
         self.background = pygame.Surface(self.screen.get_size()).convert()
-        self.tank = tank.Tank(100, utility.GROUND, "myTank.jpg","myShootyThing.jpg")
-        self.background = myBackground("a","b","myBackground.jpg")
+        self.tank = tank.Tank(100, utility.GROUND, "myTank.jpg","myShootyThing")
         self.tank2 = tank.Tank(-100,utility.GROUND,"myTank2.jpg","myShootyThing2.jpg")
  
     def mainLoop(self):
@@ -39,6 +42,16 @@ Initializes the screen and sets its dimensions.
                     (self) Returns the variable.
                     (direction) Returns the tank going in that direction
     """
+    
+        gameExit = False
+        while not gameExit:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    gameExit = True
+            
+            pygame.display.update()
+
+        
         pygame.key.set_repeat(1,50)
         while True:
             self.background.fill(white)
@@ -50,7 +63,10 @@ Initializes the screen and sets its dimensions.
                     self.tank.move(event.key)
        
         self.tank.draw(self.screen)
-   
+        
+        pygame.quit()
+        quit()
+
 
 def main():
     Controller()
