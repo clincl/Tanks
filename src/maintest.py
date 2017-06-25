@@ -5,6 +5,10 @@ import utility
 
 def test():
 	'''
+	pygame.init()
+	self.width = 800
+	self.height = 600
+	self.screen = pygame.display.set_mode((self.width, self.height))
 	This function contains the test code for the classes
 	Arguments: None
 	Returns: None
