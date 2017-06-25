@@ -1,10 +1,8 @@
 import pygame
 import tank
 
-white = (255,255,255)
-
 class Controller:
-    def __init__(self, width=640, height=480):
+    def __init__(self, width=800, height=450):
     """
 Initializes the screen and sets its dimensions.
 
@@ -24,10 +22,14 @@ Initializes the screen and sets its dimensions.
         self.screen = pygame.set_caption('Tanks')#Nia
         self.screen = pygame.display.update() #Nia
         self.background = pygame.Surface(self.screen.get_size()).convert()
-        self.tank = tank.Tank(100, utility.GROUND, "myTank.jpg","myShootyThing.jpg")
-        self.background = myBackground("a","b","myBackground.jpg")
+        self.screen.blit(utility.loadImage("myBackground.jpg")[0], (0,0))
+        self.tank1 = tank.Tank(100, utility.GROUND, "myTank.jpg","myShootyThing.jpg")
+        self.screen.blit(self.tank1.tankImage, (0,0))
+        self.screen.blit(self.tank1.shootyThingImage, (0,0))
         self.tank2 = tank.Tank(-100,utility.GROUND,"myTank2.jpg","myShootyThing2.jpg")
- 
+        self.screen.blit(self.tank2.tankImage,(0,0))
+        self.screen.blit(self.tank2.shootyThingImage, (0,0))
+        
     def mainLoop(self):
     """
     Sets the background white and allows you to hold directional keys to move.
