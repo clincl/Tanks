@@ -16,52 +16,52 @@ def test():
 
 	#This tests proper movement in the positive x direction
 	print("The old x-pos of the tank is ", tank1.tankRect.x())
-	tank.move(pygame.K_RIGHT)
+	tank1.move(pygame.K_RIGHT)
 	print("The new x-pos of the tank is ", tank1.tankRect.x())
 
 	#This tests proper movement in the negative x direction
 	print("The old x-pos of the tank is ", tank1.tankRect.x())
-	tank.move(pygame.K_LEFT)
+	tank1.move(pygame.K_LEFT)
 	print("The new x-pos of the tank is ", tank1.tankRect.x())
 
 	#This tests the upward angular movement of the shootything
 	print("The old x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
-	tank.angle(pygame.K_UP)
+	tank1.angle(pygame.K_UP)
 	print("The new x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
 
 	#This tests the downward angular movement of the shootything
 	print("The old x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
-	tank.angle(pygame.K_DOWN)
+	tank1.angle(pygame.K_DOWN)
 	print("The new x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
 
 	#This tests to see if the tank will move if non-essential keys are pressed
 	print("The old x-pos of the tank is ", tank1.tankRect.x())
-	tank.move(pygame.K_V)
+	tank1.move(pygame.K_V)
 	print("The new x-pos of the tank is ", tank1.tankRect.x())
 
 	print("The old x-pos of the tank is ", tank1.tankRect.x())
-	tank.move(pygame.K_4)
+	tank1.move(pygame.K_4)
 	print("The new x-pos of the tank is ", tank1.tankRect.x())
 
 	print("The old x-pos of the tank is ", tank1.tankRect.x())
-	tank.move(pygame.K_BACKSLASH)
+	tank1.move(pygame.K_BACKSLASH)
 	print("The new x-pos of the tank is ", tank1.tankRect.x())
 
 	#This tests to see if the shootything moves if non-essential keys are pressed
 	print("The old x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
-	tank.angle(pygame.K_V)
+	tank1.angle(pygame.K_V)
 	print("The new x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
 
 	print("The old x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
-	tank.angle(pygame.K_4)
+	tank1.angle(pygame.K_4)
 	print("The new x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
 
 	print("The old x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
-	tank.angle(pygame.K_BACKSLASH)
+	tank1.angle(pygame.K_BACKSLASH)
 	print("The new x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
 
 	#This tests to see if the tank shoots properly
-	tank.shoot(pygame.K_SPACE)
+	tank1.shoot(pygame.K_SPACE)
 
 	#This tests to see if the tank takes damage when hit
 
