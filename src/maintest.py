@@ -3,33 +3,47 @@ import tank
 import bullet
 import utility
 
+class Controller:
+	def __init__(self, width=800, height=450):
+		pygame.init()
+		self.width = width
+		self.height = height
+		self.screen = pygame.display.set_mode((self.width, self.height))
+		pygame.display.set_caption('Tanks')#Nia	
+		self.background = pygame.Surface(self.screen.get_size()).convert()
+		self.screen.blit(utility.loadImage("myBackground.jpg")[0], (0,0))
+		pygame.display.flip()
+
+
 def test():
 	'''
-	pygame.init()
-	self.width = 800
-	self.height = 600
-	self.screen = pygame.display.set_mode((self.width, self.height))
 	This function contains the test code for the classes
 	Arguments: None
 	Returns: None
 	'''
-	pygame.init()
+	x = Controller()
 	
 	#This tests object (tank) creation
-	tank1 = tank.Tank(10, 10)
-	print(type(tank1))
-
+	tank1 = tank.Tank(10, 10, "myTank.jpg", "myShootyThing.jpg")
+	x.screen.blit(tank1.tankImage, (0,0))
+	pygame.display.update() #Nia
 	#This tests the class to ensure that the stats are assigned properly
 
 	#This tests proper movement in the positive x direction
-	print("The old x-pos of the tank is ", tank1.tankRect.x())
-	tank1.move(pygame.K_RIGHT)
-	print("The new x-pos of the tank is ", tank1.tankRect.x())
+	#print(tank1.tankRect())
+	for i in range(250):	
+		tank1.move(pygame.K_RIGHT)
+		x.screen.blit(tank1.tankImage, (0,0))
+		pygame.display.update()
+	#print("The new x-pos of the tank is ", tank1.tankRect.left())
+	pygame.display.update()
+	a = input("Ready to move to the next test?")
 
 	#This tests proper movement in the negative x direction
-	print("The old x-pos of the tank is ", tank1.tankRect.x())
+	#print("The old x-pos of the tank is ", tank1.tankRect.x())
 	tank1.move(pygame.K_LEFT)
-	print("The new x-pos of the tank is ", tank1.tankRect.x())
+	#print("The new x-pos of the tank is ", tank1.tankRect.x())
+	a = input("Ready to move to the next test?")
 
 	#This tests the upward angular movement of the shootything
 	print("The old x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
