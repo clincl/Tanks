@@ -24,10 +24,10 @@ Initializes the screen and sets its dimensions.
         self.screen = pygame.set_caption('Tanks')#Nia
         self.screen = pygame.display.update() #Nia
         self.background = pygame.Surface(self.screen.get_size()).convert()
-        self.tank = tank.Tank(100, 100, "myTank.jpg")
-        self.bullet = myBullet("a","b","myBullet.png")
+        self.tank = tank.Tank(100, utility.GROUND, "myTank.jpg","myShootyThing.jpg")
         self.background = myBackground("a","b","myBackground.jpg")
-
+        self.tank2 = tank.Tank(-100,utility.GROUND,"myTank2.jpg","myShootyThing2.jpg")
+ 
     def mainLoop(self):
     """
     Sets the background white and allows you to hold directional keys to move.
@@ -48,11 +48,9 @@ Initializes the screen and sets its dimensions.
                     sys.exit()
                 elif event.type == pygame.KEYDOWN:
                     self.tank.move(event.key)
-        #        elif(pygame.sprite.collide_rect(self.hero, self.enemies[i])):
-        #needs shoot/tank destruction/collission/enemies
-        self.screen.blit(self.background, (0, 0))
+       
         self.tank.draw(self.screen)
-        #self.sprites.draw(self.screen)
+   
 
 def main():
     Controller()
