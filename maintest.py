@@ -2,14 +2,17 @@ import pygame
 import tank
 import bullet
 import utility
+
 def test():
 	'''
 	This function contains the test code for the classes
 	Arguments: None
 	Returns: None
 	'''
+	pygame.init()
+	
 	#This tests object creation
-	tank1 = tank.Tank()
+	tank1 = tank.Tank(10, 10)
 	print(type(tank1))
 
 	#This tests the class to ensure that the stats are assigned properly
@@ -60,10 +63,12 @@ def test():
 	tank1.angle(pygame.K_BACKSLASH)
 	print("The new x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
 
-	#This tests to see if the tank shoots properly
-	tank1.shoot(pygame.K_SPACE)
+	#This tests to see if the bullet is created when teh tank should shoot
+	shot = tank1.shoot(pygame.K_SPACE)
+	print(type(shot))
+	print("The x-pos and y-pos of the bullet is", shot.bulletRect.x(), "and", shot.bulletRect.y())
 
-	#This tests to see if the tank takes damage when hit
+	#This tests to see if the bullet moves properly
 
 	#This tests
 
