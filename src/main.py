@@ -24,7 +24,7 @@ Initializes the screen and sets its dimensions.
         self.screen = pygame.set_caption('Tanks')#Nia
         self.screen = pygame.display.update() #Nia
         self.background = pygame.Surface(self.screen.get_size()).convert()
-        self.tank = tank.Tank(100, 100, "myTank.jpeg")
+        self.tank = tank.Tank(100, 100, "myTank.jpg")
         self.bullet = myBullet("a","b","myBullet.png")
         self.background = myBackground("a","b","myBackground.jpg")
 
