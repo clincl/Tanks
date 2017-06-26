@@ -1,6 +1,6 @@
-import pygame
+import pygame as pg
 import tank
-import utility
+import utility as u
 
 class Controller:
     def __init__(self, width=800, height=450):
@@ -16,18 +16,19 @@ Initializes the screen and sets its dimensions.
                     (width)
                     (height)
     """
-        pygame.init()
+        
+        pg.init()
         self.width = width
         self.height = height
-        self.screen = pygame.display.set_mode((self.width, self.height))
-        self.screen = pygame.set_caption(utility.TITLE)#Nia
-        self.screen = pygame.display.update() #Nia
-        self.background = pygame.Surface(self.screen.get_size()).convert()
-        self.screen.blit(utility.loadImage("myBackground.jpg")[0], (0,0))
-        self.tank1 = tank.Tank(100, utility.GROUND, "myTank.jpg","myShootyThing.jpg")
+        self.screen = pg.display.set_mode((self.width, self.height))
+        self.screen = pg.set_caption(u.TITLE)#Nia
+        self.screen = pg.display.update() #Nia
+        self.background = pg.Surface(self.screen.get_size()).convert()
+        self.screen.blit(u.loadImage("myBackground.jpg")[0], (0,0))
+        self.tank1 = tank.Tank(100, u.GROUND, "myTank.jpg","myShootyThing.jpg")
         self.screen.blit(self.tank1.tankImage, (0,0))
         self.screen.blit(self.tank1.shootyThingImage, (0,0))
-        self.tank2 = tank.Tank(-100,utility.GROUND,"myTank2.jpg","myShootyThing2.jpg")
+        self.tank2 = tank.Tank(-100,u.GROUND,"myTank2.jpg","myShootyThing2.jpg")
         self.screen.blit(self.tank2.tankImage,(0,0))
         self.screen.blit(self.tank2.shootyThingImage, (0,0))
         
@@ -42,14 +43,14 @@ Initializes the screen and sets its dimensions.
                     (self) Returns the variable.
                     (direction) Returns the tank going in that direction
     """
-        pygame.key.set_repeat(1,50)
+        pg.key.set_repeat(1,50)
         while True:
             self.background.fill(white)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
                     #Print(event) #Nia lets you see where your mouse is
                     sys.exit()
-                elif event.type == pygame.KEYDOWN:
+                elif event.type == pg.KEYDOWN:
                     self.tank.move(event.key)
        
         self.tank.draw(self.screen)
