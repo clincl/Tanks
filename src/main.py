@@ -1,6 +1,6 @@
 import pygame as pg
-import tank
 import utility as u
+import tank
 
 class Controller:
     def __init__(self, width=800, height=450):
