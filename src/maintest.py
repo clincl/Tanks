@@ -17,7 +17,7 @@ class Window:
 
 def test():
 	'''
-	This function contains the test code for the classes
+	#This function contains the test code for the classes
 	Arguments: None
 	Returns: None
 	'''
@@ -89,7 +89,7 @@ def test():
 test()
 
 '''
-This is the updated main code for reference
+#This is the updated main code for reference
 import pygame
 import tank
 import bullet
@@ -104,20 +104,20 @@ class Window:
 		self.screen = pygame.display.set_mode((self.width, self.height))
 		pygame.display.set_caption('Tanks')#Nia	
 		self.background = pygame.Surface(self.screen.get_size()).convert()
-		self.screen.blit(utility.loadImage("myBackground.jpg")[0], (0,0))
+		self.screen.blit(utility.loadImage("myBackground.png")[0], (0,0))
 		pygame.display.flip()
 
 
 def test():
-	''
-	This function contains the test code for the classes
-	Arguments: None
-	Returns: None
-	''
+	#''
+	#This function contains the test code for the classes
+	#Arguments: None
+	#Returns: None
+	#''
 	x = Window()
 	
 	#This tests object (tank) creation
-	tank1 = tank.Tank(10, 10, "myTank.jpg", "myShootyThing.jpg")
+	tank1 = tank.Tank(10, 10, "myTank.png", "myShootyThing.png")
 	pygame.display.update() #Nia
 	#This tests the class to ensure that the stats are assigned properly
 
@@ -135,7 +135,7 @@ def test():
 	print("The final x-pos of the tank is ", tank1.tankRect.x)
 	a = input("Ready to move to the next test?")
 
-	''	
+	#''	
 	#This tests the upward angular movement of the shootything
 	print("The initial x-pos and y-pos of the shootyThing is:", tank1.shootyThingRect.x, "and", tank1.shootyThingRect.y)	
 	angle = 0	
@@ -151,16 +151,16 @@ def test():
 	angle = new_angle
 	#print("The new x-pos and y-pos of the tank is:", tank1.shootyThingRect.x(), "and", tank1.shootyThingRect.y())
 	a = input("Ready to move to the next test?")
-	''
+	#''
 	#This tests to see if the tank will move if non-essential keys are pressed
 	for i in utility.INVALID_INPUTS:
-		pos = utility.testMove(1, tank1.move(i), x, tank1) 
+		pos = utility.testMove(1, i, x, tank1) 
 		print("The new position of the tank is ", pos) 
 	a = input("Ready to move to the next test?")
 
 	#This tests to see if the shootything moves if non-essential keys are pressed
 	for i in utility.INVALID_INPUTS:
-		pos = utility.testAngle(1, tank1.angle(i), x, tank1) 
+		pos = utility.testAngle(1, i, x, tank1) 
 		print("The new position of the tank is ", pos) 
 	a = input("Ready to move to the next test?")
 
