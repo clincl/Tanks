@@ -1,8 +1,8 @@
-import pygame
-import utility
+import pygame as pg
+import utility as u
 import bullet
 
-class Tank(pygame.sprite.Sprite):
+class Tank(pg.sprite.Sprite):
     def __init__(self, x, y, tankImg, shootyThingImg):
         """
         Creates the tank.
@@ -18,13 +18,13 @@ class Tank(pygame.sprite.Sprite):
                         (y) Places the tank at y.
                         (img_file) Gives the tank its sprite.
         """
-        self.tankImage, self.tankRect = utility.loadImage(tankImg)
-        self.shootyThingImage, self.shootyThingRect = utility.loadImage(shootyThingImg)
+        self.tankImage, self.tankRect = u.loadImage(tankImg)
+        self.shootyThingImage, self.shootyThingRect = u.loadImage(shootyThingImg)
         self.tankRect.x = 10
-        self.tankRect.y = utility.GROUND
+        self.tankRect.y = u.GROUND
         self.shootyThingRect.x = self.tankRect.x + 175
-        self.shootyThingRect.y = utility.GROUND + 60
-        pygame.sprite.Sprite.__init__(self)
+        self.shootyThingRect.y = u.GROUND + 60
+        pg.sprite.Sprite.__init__(self)
         self.tankSpeed = 10.0
         self.health = 50
 
@@ -55,14 +55,14 @@ class Tank(pygame.sprite.Sprite):
                         (self) Returns the variable.
                         (direction) Returns the tank going in that direction
         """        
-        if direction == pygame.K_UP:
-            pygame.transform.rotate(self.tankImage, 20.0)
+        if direction == pg.K_UP:
+            pg.transform.rotate(self.tankImage, 20.0)
             #self.shootyThingRect.x -= 1
             #self.shootyThingRect.y -= 1
             the_angle 
             return the_angle
-        elif direction == pygame.K_DOWN:
-            pygame.transform.rotate(self.shootyThingImage, -20.0)
+        elif direction == pg.K_DOWN:
+            pg.transform.rotate(self.shootyThingImage, -20.0)
             #self.shootyThingRect.x += 1
             #self.shootyThingRect.y += 1
             the_angle -= 20
@@ -77,7 +77,7 @@ class Tank(pygame.sprite.Sprite):
         return:
                         (self) Returns the variable.
         """
-        if key == pygame.K_SPACE:
+        if key == pg.K_SPACE:
             shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y)
             return shot
             
