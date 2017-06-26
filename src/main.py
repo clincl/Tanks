@@ -19,7 +19,7 @@ Initializes the screen and sets its dimensions.
         self.width = width
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
-        self.screen = pygame.set_caption('Tanks')#Nia
+        self.screen = pygame.set_caption(TITLE)#Nia
         self.screen = pygame.display.update() #Nia
         self.background = pygame.Surface(self.screen.get_size()).convert()
         self.screen.blit(utility.loadImage("myBackground.jpg")[0], (0,0))
