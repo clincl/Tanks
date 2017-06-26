@@ -3,9 +3,9 @@ import utility as u
 
 class Bullet(pg.sprite.Sprite):
     
-    def __init__(self, x, y, direction):
+    def __init__(self, x, y, direction, bulletImg):
         pg.sprite.Sprite.__init__(self)
-        self.bulletImage, self.bulletRect = u.loadImage("myBullet.png")
+        self.bulletImage, self.bulletRect = u.loadImage(bulletImg)
         self.bulletRect.x = x + 75
         self.bulletRect.y = y
         self.bulletXSpeed = 5 * direction
