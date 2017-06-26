@@ -31,6 +31,7 @@ Initializes the screen and sets its dimensions.
         self.tank2 = tank.Tank(-100,u.GROUND,"myTank2.png","myShootyThing2.png")
         self.screen.blit(self.tank2.tankImage,(0,0))
         self.screen.blit(self.tank2.shootyThingImage, (0,0))
+        pygame.sprite.RenderPlain()
         
     def mainLoop(self):
     """
@@ -71,6 +72,8 @@ Initializes the screen and sets its dimensions.
                 if event == pg.K_SPACE:
                     self.tank2.shoot(event)
         self.tank.draw(self.screen)
+        self.
+               
    
 
 def main():
