@@ -24,11 +24,11 @@ Initializes the screen and sets its dimensions.
         self.screen = pg.set_caption(u.TITLE)#Nia
         self.screen = pg.display.update() #Nia
         self.background = pg.Surface(self.screen.get_size()).convert()
-        self.screen.blit(u.loadImage("myBackground.jpg")[0], (0,0))
-        self.tank1 = tank.Tank(100, u.GROUND, "myTank.jpg","myShootyThing.jpg")
+        self.screen.blit(u.loadImage("myBackground.png")[0], (0,0))
+        self.tank1 = tank.Tank(100, u.GROUND, "myTank.png","myShootyThing.png")
         self.screen.blit(self.tank1.tankImage, (0,0))
         self.screen.blit(self.tank1.shootyThingImage, (0,0))
-        self.tank2 = tank.Tank(-100,u.GROUND,"myTank2.jpg","myShootyThing2.jpg")
+        self.tank2 = tank.Tank(-100,u.GROUND,"myTank2.png","myShootyThing2.png")
         self.screen.blit(self.tank2.tankImage,(0,0))
         self.screen.blit(self.tank2.shootyThingImage, (0,0))
         
