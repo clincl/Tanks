@@ -32,7 +32,12 @@ Initializes the screen and sets its dimensions.
         self.screen.blit(self.tank2.tankImage,(0,0))
         self.screen.blit(self.tank2.shootyThingImage, (0,0))
         pygame.sprite.RenderPlain()
-        
+   ''' 
+   This probably doesnt go here
+   def message_to_screen(msg,color):
+    	screen_text = font.render(msg,True,color)
+	    gameDisplay.blit(screen_text,[display_width/2,display_height/2])
+   '''
     def mainLoop(self):
     """
     Sets the background white and allows you to hold directional keys to move.
@@ -44,6 +49,24 @@ Initializes the screen and sets its dimensions.
                     (self) Returns the variable.
                     (direction) Returns the tank going in that direction
     """
+     '''   
+     
+     This should allow for Quitting and Replaying
+     while not gameExit:
+		while gameOver == True:
+			gameDisplay.fill(white)
+			message_to_screen("Game Over press C to play again or Q to Quit",red)
+			pygame.display.update()
+			
+			for event in pygame.event.get ():
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_q:
+						sys.Exit = True
+						gameOver = False
+					if event.key == pygame.K_c:
+						gameLoop()
+    '''
+    
         pg.key.set_repeat(1,50)
         while True:
             self.background.fill(white)
