@@ -38,12 +38,13 @@ class Tank(pg.sprite.Sprite):
                         (self) Returns the variable.
                         (direction) Returns the tank going in that direction
         """
-        if(direction == pygame.K_LEFT):
+        if(direction == pg.K_LEFT or direction == pg.K_a):
             self.tankRect.x -= self.tankSpeed
             self.shootyThingRect.x -= self.tankSpeed
-        elif(direction == pygame.K_RIGHT):
+        elif(direction == pg.K_RIGHT or direction == pg.K_d):
             self.tankRect.x += self.tankSpeed
             self.shootyThingRect.x += self.tankSpeed
+        return self.tankRect.x, self.tankRect.y
     
     def angle(self, direction, the_angle):
         """
@@ -55,17 +56,25 @@ class Tank(pg.sprite.Sprite):
                         (self) Returns the variable.
                         (direction) Returns the tank going in that direction
         """        
-        if direction == pg.K_UP:
-            pg.transform.rotate(self.tankImage, 20.0)
+        if direction == pg.K_UP or direction == pg.K_w:
+            old = self.shootyThingRect.copy()
+            self.shootyThingImage = pg.transform.rotozoom(self.shootyThingImage, 2, 1)
+            self.shootyThingRect = self.shootyThingImage.get_rect()
+            self.shootyThingRect.w = old.w
+            self.shootyThingRect.h = old.h
+            self.shootyThingRect.center = old.center
+            print(self.shootyThingRect.width, self.shootyThingRect.height)
             #self.shootyThingRect.x -= 1
             #self.shootyThingRect.y -= 1
-            the_angle 
+            the_angle += 2
             return the_angle
-        elif direction == pg.K_DOWN:
-            pg.transform.rotate(self.shootyThingImage, -20.0)
+        elif direction == pg.K_DOWN or direction == pg.K_s:
+            self.shootyThingImage = pg.transform.rotate(self.shootyThingImage, -1)
+            self.shootyThingRect = self.shootyThingImage.get_rect()
+            self.shootyThingRect.center = origin
             #self.shootyThingRect.x += 1
             #self.shootyThingRect.y += 1
-            the_angle -= 20
+            the_angle -= 1
             return the_angle
         return the_angle
 
@@ -78,6 +87,9 @@ class Tank(pg.sprite.Sprite):
                         (self) Returns the variable.
         """
         if key == pg.K_SPACE:
-            shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y)
-            return shot
-            
+            direction = 1
+            shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, "MyBullet.png")
+	    elif key == pg.K_RSHIFT:
+            direction = -1
+            shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, "MyBullet2.png")
+        return shot
