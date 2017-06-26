@@ -1,6 +1,8 @@
 ####MAKE SURE TO CHANGE FOLDERNAME
 import pygame as pg
 import os
+import time
+import math
 
 TITLE = 'Tanks'
 GROUND = 250
@@ -14,19 +16,28 @@ def loadImage(image):
 	filename = os.path.join("images", image)
 	image = pg.image.load(filename).convert()
 	return image, image.get_rect()
-    
-#def Terrain():
 
-def testMove(functionality, Window, Tank):
-	functionality
-	Window.screen.blit(Tank.tankImage, (Tank.tankRect.x,Tank.tankRect.y))
-	Window.screen.blit(Tank.shootyThingImage, (Tank.shootyThingRect.x,Tank.shootyThingRect.y))		
-	pg.display.update()
+def testMove(iters, direction, Window, Tank):
+	for i in range(iters):
+		pos = Tank.move(direction)
+		Window.screen.blit(Tank.tankImage, (Tank.tankRect.x,Tank.tankRect.y))
+		Window.screen.blit(Tank.shootyThingImage, (Tank.shootyThingRect.x,Tank.shootyThingRect.y))		
+		pg.display.update()
+		print("The new position of the tank is ", pos)
+	return pos 
 
-def testAngle(functionality, init_angle, Window, Tank):	
-	angle = init_angle	
-	angle = functionality
-	Window.screen.blit(Tank.tankImage, (Tank.tankRect.x,Tank.tankRect.y))
-	Window.screen.blit(Tank.shootyThingImage, (Tank.shootyThingRect.x,Tank.shootyThingRect.y))
-	pg.display.update()
-	return angle
+def testAngle(iters, direction, init_angle, Window, Tank):
+	for i in range(iters):		
+		angle = Tank.angle(direction, init_angle)
+		init_angle = angle
+		#Window.screen.blit(Tank.tankImage, (Tank.tankRect.x,Tank.tankRect.y))
+		Window.screen.blit(Tank.shootyThingImage, (Tank.shootyThingRect.x,Tank.shootyThingRect.y))
+		pg.display.update()
+		time.sleep(1)
+		print("The angle of the shootyThing is ", init_angle)
+	return init_angle
+
+def collisionCheck(MainObject, SpriteGroup):
+	col = pygame.sprite.collide(MainObject, SpriteGroup)
+	if col == True:
+		pygame.sprite.SpriteGroup.remove()
