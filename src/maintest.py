@@ -11,7 +11,7 @@ class Window:
 		self.screen = pg.display.set_mode((self.width, self.height))
 		pg.display.set_caption('Tanks')#Nia	
 		self.background = pg.Surface(self.screen.get_size()).convert()
-		self.screen.blit(u.loadImage("myBackground.jpg")[0], (0,0))
+		self.screen.blit(u.loadImage("myBackground.png")[0], (0,0))
 		pg.display.flip()
 
 
@@ -24,7 +24,7 @@ def test():
 	x = Window()
 	
 	#This tests object (tank) creation
-	tank1 = tank.Tank(10, 10, "myTank.jpg", "myShootyThing.jpg")
+	tank1 = tank.Tank(10, 10, "myTank.png", "myShootyThing.png")
 	pg.display.update() #Nia
 	#This tests the class to ensure that the stats are assigned properly
 
