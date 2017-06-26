@@ -2,6 +2,7 @@
 import pygame
 import os
 
+TITLE = 'Tanks'
 GROUND = 250
 BLACK = (0,0,0)
 WHITE = (255, 255, 255)
