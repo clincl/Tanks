@@ -5,7 +5,7 @@ class Bullet(pg.sprite.Sprite):
     
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.bulletImage, self.bulletRect = u.loadImage("myBullet.jpg")
+        self.bulletImage, self.bulletRect = u.loadImage("myBullet.png")
         self.bulletRect.x = x + 75
         self.bulletRect.y = y
         self.bulletXSpeed = 5
