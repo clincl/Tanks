@@ -1,5 +1,6 @@
 import pygame
 import tank
+import utilities
 
 class Controller:
     def __init__(self, width=800, height=450):
