@@ -24,28 +24,36 @@ class Tank(pg.sprite.Sprite):
 		return self.tankRect.x, self.tankRect.y
 	    
 	def angle(self, direction, the_angle):      
-		if direction == pg.K_UP or direction == pg.K_w:
+		if direction == pg.K_UP:
 			old = self.shootyThingRect.copy()
-			self.shootyThingImage = pg.transform.rotozoom(self.shootyThingImage, 2, 1)
-			self.shootyThingRect = self.shootyThingImage.get_rect()
-			self.shootyThingRect.w = old.w
-			self.shootyThingRect.h = old.h
-			self.shootyThingRect.center = old.center
-			print(self.shootyThingRect.width, self.shootyThingRect.height)
-			#self.shootyThingRect.x -= 1
-			#self.shootyThingRect.y -= 1
+			xDir = 1
+			yDir = -1
+			angleDir = -1
+			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
 			the_angle += 2
 			return the_angle
-		elif direction == pg.K_DOWN or direction == pg.K_s:
+		if direction == pg.K_w:
 			old = self.shootyThingRect.copy()
-			self.shootyThingImage = pg.transform.rotozoom(self.shootyThingImage, -2, 1)
-			self.shootyThingRect = self.shootyThingImage.get_rect()
-			self.shootyThingRect.w = old.w
-			self.shootyThingRect.h = old.h
-			self.shootyThingRect.center = old.center
-			print(self.shootyThingRect.width, self.shootyThingRect.height)
-			#self.shootyThingRect.x += 1
-			#self.shootyThingRect.y += 1
+			xDir = -1
+			yDir = -1 
+			angleDir = 1
+			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
+			the_angle += 2
+			return the_angle
+		if direction == pg.K_DOWN:
+			old = self.shootyThingRect.copy()
+			xDir = -1
+			yDir = 1
+			angleDir = 1
+			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
+			the_angle -= 2
+			return the_angle
+		if direction == pg.K_s:
+			old = self.shootyThingRect.copy()
+			xDir = 1
+			yDir = 1
+			angleDir = -1
+			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
 			the_angle -= 2
 			return the_angle
 		return the_angle
@@ -53,7 +61,7 @@ class Tank(pg.sprite.Sprite):
 	def shoot(self, key):
 		if key == pg.K_SPACE:
 			direction = 1
-		shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, "MyBullet.png")
+			shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, "MyBullet.png")
 		if key == pg.K_RSHIFT: #elif doesn't work what?
 			direction = -1
 			shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, "MyBullet2.png")
