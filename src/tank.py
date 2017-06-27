@@ -25,36 +25,32 @@ class Tank(pg.sprite.Sprite):
 	    
 	def angle(self, direction, the_angle):      
 		if direction == pg.K_UP:
-			old = self.shootyThingRect.copy()
-			xDir = 1
-			yDir = -1
-			angleDir = -1
-			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
-			the_angle += 2
+			the_angle += 1
+			for i in utility.ANGLE_DICTIONARY_2.keys():
+				diff = the_angle - i
+				if i == the_angle or (diff <= 4 and diff > 0):
+					self.shootyThingImage = utility.loadImage(utility.ANGLE_DICTIONARY_2.get(i))
 			return the_angle
 		if direction == pg.K_w:
-			old = self.shootyThingRect.copy()
-			xDir = -1
-			yDir = -1 
-			angleDir = 1
-			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
-			the_angle += 2
+			the_angle += 1
+			for i in utility.ANGLE_DICTIONARY.keys():
+				diff = the_angle - i
+				if i == the_angle or (diff <= 4 and diff > 0):
+					self.shootyThingImage = utility.loadImage(utility.ANGLE_DICTIONARY.get(i))
 			return the_angle
 		if direction == pg.K_DOWN:
-			old = self.shootyThingRect.copy()
-			xDir = -1
-			yDir = 1
-			angleDir = 1
-			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
-			the_angle -= 2
+			the_angle += 1
+			for i in utility.ANGLE_DICTIONARY_2.keys():
+				diff = the_angle - i
+				if i == the_angle or (diff <= 4 and diff > 0):
+					self.shootyThingImage = utility.loadImage(utility.ANGLE_DICTIONARY_2.get(i))
 			return the_angle
 		if direction == pg.K_s:
-			old = self.shootyThingRect.copy()
-			xDir = 1
-			yDir = 1
-			angleDir = -1
-			self.shootyThingRect = u.transformShootyThing(self.shootyThingRect, old, xDir, yDir, angleDir)
-			the_angle -= 2
+			the_angle += 1
+			for i in utility.ANGLE_DICTIONARY.keys():
+				diff = the_angle - i
+				if i == the_angle or (diff <= 4 and diff > 0):
+					self.shootyThingImage = utility.loadImage(utility.ANGLE_DICTIONARY.get(i))
 			return the_angle
 		return the_angle
 
