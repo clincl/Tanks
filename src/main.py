@@ -1,10 +1,11 @@
 import pygame as pg
 import utility as u
 import tank
+#import barrier
 
 
 class Controller():
-	def __init__(self, width=800, height=450):
+	def __init__(self, width=1200, height=675):
 
 		pg.init()
 		self.width = width
@@ -14,6 +15,8 @@ class Controller():
 		pg.display.update() 
 		self.background = pg.Surface(self.screen.get_size()).convert()
 		self.screen.blit(u.loadImage("myBackground.png")[0], (0, 0))
+		#self.wall = barrier.Barrier()		
+		#self.screen.blit(self.wall,(self.wall.x,self.wall.y))
 		self.tank1 = tank.Tank(10, u.GROUND, "myTank.png", "myShootyThing.png")
 		self.screen.blit(self.tank1.tankImage, (0, 0))
 		self.screen.blit(self.tank1.shootyThingImage, (0, 0))
