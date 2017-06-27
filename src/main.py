@@ -83,7 +83,7 @@ Initializes the screen and sets its dimensions.
                 elif event == pg.K_RIGHT:
                     self.tank1.move(event)
                 if event == pg.K_RSHIFT:
-                    self.tank1.shoot(event)
+                    shot = self.tank1.shoot(event)
                 if event == pg.K_w:
                     self.tank2.angle(event)
                 elif event == pg.K_s:
@@ -93,8 +93,10 @@ Initializes the screen and sets its dimensions.
                 elif event == pg.K_d:
                     self.tank2.move(event)
                 if event == pg.K_SPACE:
-                    self.tank2.shoot(event)
-        self.tank.draw(self.screen)
+                    shot = self.tank2.shoot(event)
+        #check for all collisions
+	#respond appropriately
+	self.tank.draw(self.screen)
         self.
                
    
