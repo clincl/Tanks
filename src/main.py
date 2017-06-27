@@ -32,13 +32,12 @@ Initializes the screen and sets its dimensions.
         self.screen.blit(self.tank2.tankImage,(0,0))
         self.screen.blit(self.tank2.shootyThingImage, (0,0))
         pygame.sprite.RenderPlain()
-   ''' 
-   This probably doesnt go here
+  
    def message_to_screen(msg,color):
     	screen_text = font.render(msg,True,color)
 	    gameDisplay.blit(screen_text,[display_width/2,display_height/2])
-   '''
-    def mainLoop(self):
+  
+    def gameLoop(self):
     """
     Sets the background white and allows you to hold directional keys to move.
 
@@ -48,13 +47,12 @@ Initializes the screen and sets its dimensions.
     return:
                     (self) Returns the variable.
                     (direction) Returns the tank going in that direction
-    """
-     '''   
+    """ 
      
-     This should allow for Quitting and Replaying
+  
      while not gameExit:
 		while gameOver == True:
-			gameDisplay.fill(white)
+			self.screen.fill(white)
 			message_to_screen("Game Over press C to play again or Q to Quit",red)
 			pygame.display.update()
 			
@@ -65,35 +63,33 @@ Initializes the screen and sets its dimensions.
 						gameOver = False
 					if event.key == pygame.K_c:
 						gameLoop()
-    '''
     
-        pg.key.set_repeat(1,50)
-        while True:
-            self.background.fill(white)
+       # pg.key.set_repeat(1,50)
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     #Print(event) #Nia lets you see where your mouse is
-                    sys.exit()
-                if event == pg.K_UP:
-                    self.tank1.angle(event)
-                elif event == pg.K_DOWN:
-                    self.tank1.angle(event)
-                if event == pg.K_LEFT:
-                    self.tank1.move(event)
-                elif event == pg.K_RIGHT:
-                    self.tank1.move(event)
-                if event == pg.K_RSHIFT:
-                    shot = self.tank1.shoot(event)
-                if event == pg.K_w:
-                    self.tank2.angle(event)
-                elif event == pg.K_s:
-                    self.tank2.angle(event)
-                if event == pg.K_a:
-                    self.tank2.move(event)
-                elif event == pg.K_d:
-                    self.tank2.move(event)
-                if event == pg.K_SPACE:
-                    shot = self.tank2.shoot(event)
+                     GameExit = True
+		if event.type == pygame.KEYDOWN
+			if event == pg.K_UP:
+			    self.tank1.angle(event)
+			elif event == pg.K_DOWN:
+			    self.tank1.angle(event)
+			if event == pg.K_LEFT:
+			    self.tank1.move(event)
+			elif event == pg.K_RIGHT:
+			    self.tank1.move(event)
+			if event == pg.K_RSHIFT:
+			    shot = self.tank1.shoot(event)
+			if event == pg.K_w:
+			    self.tank2.angle(event)
+			elif event == pg.K_s:
+			    self.tank2.angle(event)
+			if event == pg.K_a:
+			    self.tank2.move(event)
+			elif event == pg.K_d:
+			    self.tank2.move(event)
+			if event == pg.K_SPACE:
+			    shot = self.tank2.shoot(event)
         #check for all collisions
 	#respond appropriately
 	self.tank.draw(self.screen)
@@ -103,6 +99,6 @@ Initializes the screen and sets its dimensions.
 
 def main():
     Controller()
-    Controller.mainLoop()
+    Controller.gameLoop()
 
 main()
