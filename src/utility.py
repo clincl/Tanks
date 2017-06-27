@@ -44,3 +44,14 @@ def collisionCheck(MainObject, SpriteGroup):
 	col = pygame.sprite.collide(MainObject, SpriteGroup)
 	if col == True:
 		pygame.sprite.SpriteGroup.remove()
+		
+def transformShootyThing(Surface, Copy, XDir, YDir, Angle_Dir):
+	Surface = pg.transform.rotozoom(Surface, 2 * Angle_Dir, 1)
+	self.shootyThingRect = self.shootyThingImage.get_rect()
+	Surface.w = Copy.w
+	Surface.h = Copy.h
+	Surface.center = Copy.center
+	print(Surface.width, Surface.height)
+	Surface.x += 1 * XDir
+	Surface.y += 1 * YDir
+	return Surface
