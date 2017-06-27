@@ -13,8 +13,8 @@ class Controller():
 		self.screen = pg.display.set_mode((self.width, self.height))
 		pg.display.set_caption("Tanks")
 		pg.display.update() 
-		self.background = pg.Surface(self.screen.get_size()).convert()
-		self.screen.blit(u.loadImage("myBackground.png")[0], (0, 0))
+		self.background = u.loadImage("myBackground.png")[0]#pg.Surface(self.screen.get_size()).convert()
+		self.screen.blit(self.background, (0, 0))
 		self.wall = barrier.Barrier(600,375)		
 		self.screen.blit(self.wall,(self.wall.x,self.wall.y))
 		self.tank1 = tank.Tank(10, u.GROUND, "myTank.png", "myShootyThing.png")
@@ -86,7 +86,7 @@ class Controller():
 		collisionCheck(self.tank2, self.spritegroup)
 		collisionCheck(u.GROUND, self.spritegroup)
 		collisionCheck(self.wall, self.spritegroup)
-		pg.display.update()
+		pg.display.flip()
 		gameOver = True
 
 
