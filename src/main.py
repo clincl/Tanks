@@ -1,7 +1,7 @@
 import pygame as pg
 import utility as u
 import tank
-#import barrier
+import barrier
 
 
 class Controller():
@@ -15,8 +15,8 @@ class Controller():
 		pg.display.update() 
 		self.background = pg.Surface(self.screen.get_size()).convert()
 		self.screen.blit(u.loadImage("myBackground.png")[0], (0, 0))
-		#self.wall = barrier.Barrier()		
-		#self.screen.blit(self.wall,(self.wall.x,self.wall.y))
+		self.wall = barrier.Barrier(600,375)		
+		self.screen.blit(self.wall,(self.wall.x,self.wall.y))
 		self.tank1 = tank.Tank(10, u.GROUND, "myTank.png", "myShootyThing.png")
 		self.screen.blit(self.tank1.tankImage, (0, 0))
 		self.screen.blit(self.tank1.shootyThingImage, (0, 0))
@@ -70,6 +70,7 @@ class Controller():
 					self.tank1.move(event)
 				if event == pg.K_RSHIFT:
 					shot = self.tank1.shoot(event)
+					self.spritegroup.add(shot)
 				if event == pg.K_w:
 					self.tank2.angle(event)
 				elif event == pg.K_s:
@@ -80,11 +81,11 @@ class Controller():
 					self.tank2.move(event)
 				if event == pg.K_SPACE:
 					shot = self.tank2.shoot(event)
-				
-		collisionCheck(self.tank1)
-		collisionCheck(self.tank2)
-		collisionCheck(U.GROUND)
-		collisionCheck(self.wall)
+					self.spritegroup.add(shot)				
+		collisionCheck(self.tank1, self.spritegroup)
+		collisionCheck(self.tank2, self.spritegroup)
+		collisionCheck(u.GROUND, self.spritegroup)
+		collisionCheck(self.wall, self.spritegroup)
 
 		#self.tank.draw(self.screen)
 		gameOver = True
