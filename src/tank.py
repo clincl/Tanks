@@ -69,12 +69,16 @@ class Tank(pg.sprite.Sprite):
             the_angle += 2
             return the_angle
         elif direction == pg.K_DOWN or direction == pg.K_s:
-            self.shootyThingImage = pg.transform.rotate(self.shootyThingImage, -1)
+            old = self.shootyThingRect.copy()
+            self.shootyThingImage = pg.transform.rotozoom(self.shootyThingImage, -2, 1)
             self.shootyThingRect = self.shootyThingImage.get_rect()
-            self.shootyThingRect.center = origin
+            self.shootyThingRect.w = old.w
+            self.shootyThingRect.h = old.h
+            self.shootyThingRect.center = old.center
+            print(self.shootyThingRect.width, self.shootyThingRect.height)
             #self.shootyThingRect.x += 1
             #self.shootyThingRect.y += 1
-            the_angle -= 1
+            the_angle -= 2
             return the_angle
         return the_angle
 
