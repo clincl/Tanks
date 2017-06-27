@@ -42,10 +42,10 @@ def testAngle(iters, direction, init_angle, Window, Tank):
 		print("The angle of the shootyThing is ", init_angle)
 	return init_angle
 
-def collisionCheck(MainObject, SpriteGroup):
-	col = pygame.sprite.collide(MainObject, SpriteGroup)
-	if col == True:
-		pygame.sprite.SpriteGroup.remove()
+def collisionCheck(MainObject, Group):
+	col = pygame.sprite.collide(MainObject, Group)
+	for i in col:
+		Group.remove(i)
 		
 def transformShootyThing(Surface, Copy, XDir, YDir, Angle_Dir):
 	Surface = pg.transform.rotozoom(Surface, 2 * Angle_Dir, 1)
