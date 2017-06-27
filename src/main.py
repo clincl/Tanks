@@ -23,7 +23,7 @@ class Controller():
 		self.tank2 = tank.Tank(-10, u.GROUND, "myTank2.png", "myShootyThing2.png")
 		self.screen.blit(self.tank2.tankImage, (0, 0))
 		self.screen.blit(self.tank2.shootyThingImage, (0, 0))
-
+		self.spritegroup = pg.sprite.Sprite()
 		self.font = pg.font.SysFont(None,25)
 		pg.sprite.RenderPlain()
 		pg.display.flip()
@@ -55,7 +55,7 @@ class Controller():
 						if event.key == pg.K_c:
 							gameLoop()
 
-						# pg.key.set_repeat(1,50)
+		pg.key.set_repeat(1,50)
 		for event in pg.event.get():
 			if event.type == pg.QUIT:
 				gameExit = True
@@ -80,9 +80,13 @@ class Controller():
 					self.tank2.move(event)
 				if event == pg.K_SPACE:
 					shot = self.tank2.shoot(event)
-				# check for all collisions
-				# respond appropriately
-		self.tank.draw(self.screen)
+				
+		collisionCheck(self.tank1)
+		collisionCheck(self.tank2)
+		collisionCheck(U.GROUND)
+		collisionCheck(self.wall)
+
+		#self.tank.draw(self.screen)
 		gameOver = True
 
 
