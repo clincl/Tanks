@@ -86,8 +86,7 @@ class Controller():
 		collisionCheck(self.tank2, self.spritegroup)
 		collisionCheck(u.GROUND, self.spritegroup)
 		collisionCheck(self.wall, self.spritegroup)
-
-		#self.tank.draw(self.screen)
+		pg.display.update()
 		gameOver = True
 
 
