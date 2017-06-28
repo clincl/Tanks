@@ -14,7 +14,7 @@ class Controller():
 		pg.display.update() 
 		self.background = u.loadImage("myBackground.png")[0]#pg.Surface(self.screen.get_size()).convert()
 		self.screen.blit(self.background, (0, 0))
-		self.wall = u.loadImage("myWall.jpg")
+		self.wall = u.loadImage("myWall.png")
 		self.screen.blit(self.wall[0],(600,375))
 		self.tank1 = tank.Tank(10, u.GROUND, "myTank.png", "myShootyThing.png")
 		self.screen.blit(self.tank1.image, (100, 577))
