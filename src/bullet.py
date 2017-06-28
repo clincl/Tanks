@@ -1,5 +1,5 @@
 import pygame as pg
-import math as *
+import math
 import utility as u
 
 class Bullet(pg.sprite.Sprite):
@@ -15,17 +15,17 @@ class Bullet(pg.sprite.Sprite):
 		self.angle = angle
         
 	def update(self):
-		self.bulletRect.x += self.bulletXSpeed * cos(self.angle)
+		self.bulletRect.x += self.bulletXSpeed * math.cos(self.angle)
 		t = 0
 		while self.bulletYSpeed > 0:
 			t +=1
 			self.bulletYSpeed += u.GRAVITY * t #as t increases speed drops
-			self.bulletRect.y += ((self.bulletYSpeed * sin(self.angle)) * t) + ((u.GRAVITY/2) * t**2)
+			self.bulletRect.y += ((self.bulletYSpeed * math.sin(self.angle)) * t) + ((u.GRAVITY/2) * t**2)
 		if self.bulletYSpeed <= 0:
 			while self.bulletRect.y > u.GROUND:
 				t -= 1
 				self.bulletYSpeed -= u.GRAVITY * t #as t increases speed increases
-				self.bulletRect.y += ((self.bulletYSpeed * sin(self.angle)) * t) + ((u.GRAVITY/2) * t**2)
+				self.bulletRect.y += ((self.bulletYSpeed * math.sin(self.angle)) * t) + ((u.GRAVITY/2) * t**2)
 
 				
 		#if self.bulletY == self.bulletMaxY:
