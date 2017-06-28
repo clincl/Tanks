@@ -24,27 +24,53 @@ class Controller():
 		self.screen.blit(self.tank2.tankImage, (0, 0))
 		self.screen.blit(self.tank2.shootyThingImage, (0, 0))
 		self.spritegroup = pg.sprite.Sprite()
-		self.font = pg.font.SysFont(None,25)
+		self.smallfont = pg.font.SysFont("comicsansms",25)
+		self.medfont = pg.font.SysFont("comicsansms",50)
+		self.largefont = pg.font.SysFont("comicsansms",80)
 		pg.sprite.RenderPlain()
 		pg.display.flip()
 		self.clock = pg.time.Clock()
 
-	def text_objects(self,text,color):
-		textSurface = self.font.render(text,True,color)
+	def text_objects(self,text,color,size):
+		if size == "small":
+			textSurface = self.smallfont.render(text,True,color)
+		elif size == "medium":
+			textSurface = self.medfont.render(text,True,color)
+		elif size == "large":
+			textSurface = self.largefont.render(text,True,color)
 		return textSurface, textSurface.get_rect()
 
 	def message_to_screen(self,msg, color,y_displace = 0, size="small"):
-		textSurf,textRect = text_objects(msg,red)
+		textSurf,textRect = text_objects(msg,color)
 		textRect.center = (self.width/2,self.height/2) + y_displace
 		self.screen.blit(textSurf,textRect)
-
+	def game_intro(): #make sure you call it before the game loop 
+		intro = True
+		while intro:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					pygame.quit()
+					quit()
+				if event.type == pygame.KEYDOWN
+					if event.key -- pygame.K_c:
+						intro = False
+					if event.key == pygame.K_q:
+						pygame.QUIT
+						quit()
+			gameDisplay.fill(white)
+			message_to_screen("Welcome to Tanks",purple,-100,size="large")
+			message_to_screen("The Object of the game is to:",black,-30,size="small")
+			message_to_screen("More Stuff Here",black,-40,size="small")
+			message_to_screen("More Stuff Here",black,-40,size="small")
+		pygame.display.update()
+		clock.tick(15)
 
 	def gameLoop(self):
 
 		while not gameExit:
 			while gameOver == True:
-				self.screen.fill(white)
-				message_to_screen("Game Over press C to play again or Q to Quit", red,-50)
+				self.screen.fill(white)  #ExitScreen
+				message_to_screen("Game Over press C to play again or Q to Quit", red,y_displace=-50,size = "large")
 				pg.display.update()
 
 				for event in pg.event.get():
