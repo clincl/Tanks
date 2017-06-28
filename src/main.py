@@ -53,7 +53,7 @@ class Controller():
 				if event.type == pg.QUIT:
 					pg.quit()
 					quit()
-				if event.type == pg.KEYDOWN
+				if event.type == pg.KEYDOWN:
 					if event.key == pg.K_c:
 						intro = False
 					if event.key == pg.K_q:
