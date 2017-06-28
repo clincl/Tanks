@@ -28,11 +28,14 @@ class Controller():
 		self.medfont = pg.font.SysFont("comicsansms",50)
 		self.largefont = pg.font.SysFont("comicsansms",80)
 		self.openingMusic = u.loadMusic("IntroMusic.mp3")
+		self.battleMusic = u.loadMusic("BattleMusic.mp3")
+		self.gameOver = u.loadMusic("GameOver.mp3")
 		#self.icon = pg.image.load('myTank.png')
 		pg.sprite.RenderPlain()
 		pg.display.flip()
 		#pg.display.set_icon(self.icon)#best size is 32*32
 		self.clock = pg.time.Clock()
+		
 
 	def text_objects(self,text,color,size):
 		if size == "small":
@@ -48,6 +51,7 @@ class Controller():
 		self.textRect.center = (self.width/2 + y_displace,self.height/2 + y_displace)
 		self.screen.blit(self.textSurf,self.textRect)
 		return self.textSurf
+	
 	def game_intro(self):
 		for event in pg.event.get():
 			if event.type == pg.KEYDOWN:
@@ -60,7 +64,7 @@ class Controller():
 		self.message_to_screen("The Object of the game is to:",u.BLACK,-30,size="small")
 		self.message_to_screen("More Stuff Here",u.BLACK,45,size="small")
 		self.message_to_screen("More Stuff Here",u.BLACK,30,size="small")
-
+		
 	def gameLoop(self):
 		self.gameState = "Start"
 		self.angle1 = 45
@@ -72,13 +76,13 @@ class Controller():
 				print("Start")
 				self.openingMusic 
 			elif self.gameState == "Running":
-			
+				self.battleMusic
 				self.posTup1 = []
 				self.posTup2 = []
 				for event in pg.event.get():
-					if event.type == pg.K_ESCAPE:
-						gameState = "Over"
 					if event.type == pg.KEYDOWN:
+						if event.key == pg.K_ESCAPE:
+							self.gameState = "Over"
 						if event.key == pg.K_UP:
 							ang = self.tank2.angle(event.key,self.angle2)
 							self.angle2 = ang
@@ -114,11 +118,12 @@ class Controller():
 					self.tank2.rect.x = self.posTup2[0]
 					self.tank2.rect.y = self.posTup2[1]
 					self.tank2.shootyThingRect.x = self.posTup2[2]
-					self.tank2.shootyThingRect.y = self.posTup2[3]			
+					self.tank2.shootyThingRect.y = self.posTup2[3]	
+				self.spritegroup.update()
 				u.collisionCheck(self.tank1, self.spritegroup)
 				u.collisionCheck(self.tank2, self.spritegroup)
 				for i in self.spritegroup.sprites():
-					if self.wall.get_rect().colliderect(i.rect):
+					if self.wall[0].get_rect().colliderect(i.rect):
 						self.spritegroup.remove(i)
 				u.groundCheck(self.spritegroup)
 				print(self.tank1.rect.x, self.tank2.rect.x)
@@ -127,12 +132,15 @@ class Controller():
 				self.screen.blit(self.tank1.shootyThingImage, (self.tank1.shootyThingRect.x, self.tank2.shootyThingRect.y))
 				self.screen.blit(self.wall[0],(600,375))
 				self.screen.blit(self.tank2.image, (self.tank2.rect.x,self.tank2.rect.y ))
-				self.screen.blit(self.tank2.shootyThingImage, (self.tank2.shootyThingRect.x, self.tank2.shootyThingRect.y))
+				self.screen.blit(self.tank2.shootyThingImage, (self.tank2.shootyThingRect.x, self.tank2.shootyThingRect.y))				
+				if len(self.spritegroup) >= 1:
+					for i in self.spritegroup:
+						self.screen.blit(i.bulletImage, (self.shot.rect.x,self.shot.rect.y))
 			elif self.gameState == "Over":
-
-				self.screen.fill(white)  #ExitScreen
-				message_to_screen("Game Over press C to play again or Q to Quit", red,y_displace=-50,size = "large")
-				#pg.display.update()
+				self.gameOver
+				self.screen.fill(u.WHITE)  #ExitScreen
+				self.message_to_screen("Game Over press C to play again or Q to Quit", u.RED,y_displace=-50,size = "medium")
+				pg.display.update()
 
 				for event in pg.event.get():
 					if event.type == pg.KEYDOWN:
