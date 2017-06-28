@@ -25,7 +25,7 @@ def loadImage(image):
 
 def loadMusic(Music):
 	musicfile = pg.mixer.music.load("music", music)
-	music = pg.mixer.music.play(-1)
+	music = pg.mixer.music.play(-1,0,0) #the (0,0) is where/when you want the music to start
 
 
 
