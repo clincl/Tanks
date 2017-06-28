@@ -27,8 +27,10 @@ class Controller():
 		self.smallfont = pg.font.SysFont("comicsansms",25)
 		self.medfont = pg.font.SysFont("comicsansms",50)
 		self.largefont = pg.font.SysFont("comicsansms",80)
+		self.icon = pg.image.load('myTank.png')
 		pg.sprite.RenderPlain()
 		pg.display.flip()
+		pg.display.set_icon(self.icon)#best size is 32*32
 		self.clock = pg.time.Clock()
 
 	def text_objects(self,text,color,size):
@@ -47,23 +49,23 @@ class Controller():
 	def game_intro(): #make sure you call it before the game loop 
 		intro = True
 		while intro:
-			for event in pygame.event.get():
-				if event.type == pygame.QUIT:
-					pygame.quit()
+			for event in pg.event.get():
+				if event.type == pg.QUIT:
+					pg.quit()
 					quit()
-				if event.type == pygame.KEYDOWN
-					if event.key -- pygame.K_c:
+				if event.type == pg.KEYDOWN
+					if event.key == pg.K_c:
 						intro = False
-					if event.key == pygame.K_q:
-						pygame.QUIT
+					if event.key == pg.K_q:
+						pg.QUIT
 						quit()
-			gameDisplay.fill(white)
+			self.screen.fill(white)
 			message_to_screen("Welcome to Tanks",purple,-100,size="large")
 			message_to_screen("The Object of the game is to:",black,-30,size="small")
 			message_to_screen("More Stuff Here",black,-40,size="small")
 			message_to_screen("More Stuff Here",black,-40,size="small")
-		pygame.display.update()
-		clock.tick(15)
+		pg.display.update()
+		#clock.tick(15)
 
 	def gameLoop(self):
 
