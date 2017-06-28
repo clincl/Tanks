@@ -63,51 +63,57 @@ class Controller():
 
 	def gameLoop(self):
 		self.gameState = "Start"
-	
+		self.angle1 = 45
+		self.angle2 = 45
 		while True:
 			if self.gameState == "Start":
 				self.game_intro()
 				print("Start")
 				self.openingMusic 
 			elif self.gameState == "Running":
-				pg.key.set_repeat(1,50)
+				pg.key.set_repeat(0,10)
 				self.posTup1 = []
 				self.posTup2 = []
 				for event in pg.event.get():
 					if event.type == pg.K_ESCAPE:
 						gameState = "Over"
 					if event.type == pg.KEYDOWN:
-						if event == pg.K_UP:
-							self.tank1.angle(event)
-						elif event == pg.K_DOWN:
-							self.tank1.angle(event)
-						if event == pg.K_LEFT:
-							self.posTup1 = self.tank1.move(event)
-						elif event == pg.K_RIGHT:
-							self.posTup1 = self.tank1.move(event)
-						if event == pg.K_RSHIFT:
-							self.shot = self.tank1.shoot(event)
+						if event.key == pg.K_UP:
+							ang = self.tank2.angle(event.key,self.angle2)
+							self.angle2 = ang
+						elif event.key == pg.K_DOWN:
+							ang = self.tank2.angle(event.key, self.angle2)
+							self.angle2 = ang
+						if event.key == pg.K_LEFT:
+							self.posTup2 = self.tank2.move(event.key)
+						elif event.key == pg.K_RIGHT:
+							self.posTup2 = self.tank2.move(event.key)
+						if event.key == pg.K_RSHIFT:
+							self.shot = self.tank2.shoot(event.key)
 							self.spritegroup.add(self.shot)
-						if event == pg.K_w:
-							self.tank2.angle(event)
-						elif event == pg.K_s:
-							self.tank2.angle(event)
-						if event == pg.K_a:
-							self.posTup2 = self.tank2.move(event)
-						elif event == pg.K_d:
-							self.posTup2 = self.tank2.move(event)
-						if event == pg.K_SPACE:
-							self.shot = self.tank2.shoot(event)
+						if event.key == pg.K_w:
+							ang = self.tank1.angle(event.key, self.angle1)
+							self.angle1 = ang
+						elif event.key == pg.K_s:
+							ang = self.tank1.angle(event.key,self.angle1)
+							self.angle1 = ang
+						if event.key == pg.K_a:
+							self.posTup1 = self.tank1.move(event.key)
+						elif event.key == pg.K_d:
+							self.posTup1 = self.tank1.move(event.key)
+						if event.key == pg.K_SPACE:
+							self.shot = self.tank1.shoot(event.key)
 							self.spritegroup.add(self.shot)				
 				if len(self.posTup1) != 0:
 					self.tank1.rect.x = self.posTup1[0]
+					self.tank1.rect.y = self.posTup1[1]
 					self.tank1.shootyThingRect.x = self.posTup1[2]
 					self.tank1.shootyThingRect.y = self.posTup1[3]
 				if len(self.posTup2) != 0:
-					self.tank1.rect.x = self.posTup2[0]
-					self.tank1.rect.y = self.posTup2[1]
-					self.tank1.shootyThingRect.x = self.posTup2[2]
-					self.tank1.shootyThingRect.y = self.posTup2[3]			
+					self.tank2.rect.x = self.posTup2[0]
+					self.tank2.rect.y = self.posTup2[1]
+					self.tank2.shootyThingRect.x = self.posTup2[2]
+					self.tank2.shootyThingRect.y = self.posTup2[3]			
 				u.collisionCheck(self.tank1, self.spritegroup)
 				u.collisionCheck(self.tank2, self.spritegroup)
 				for i in self.spritegroup.sprites():
