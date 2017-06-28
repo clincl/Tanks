@@ -5,7 +5,7 @@ import time
 import math
 
 TITLE = 'Tanks'
-GROUND = 250
+GROUND = 577
 BLACK = (0,0,0)
 WHITE = (255, 255, 255)
 PURPLE = (216, 191, 216)
@@ -23,11 +23,10 @@ def loadImage(image):
 	image = pg.image.load(filename).convert_alpha()
 	return image, image.get_rect()
 
-def loadMusic(Music):
-	musicfile = pg.mixer.music.load("music", music)
-	music = pg.mixer.music.play(-1,0,0) #the (0,0) is where/when you want the music to start
-
-
+def loadMusic(muse):
+	
+	musicfile = pg.mixer.music.load(muse)
+	music = pg.mixer.music.play(-1)
 
 def testMove(iters, direction, Window, Tank):
 	for i in range(iters):
