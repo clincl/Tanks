@@ -1,5 +1,6 @@
 import pygame as pg
 import tank
+import main
 
 class Barrier(pg.sprite.Sprite):
 	def __init__(self,x ,y,width =100,height=300 ):
