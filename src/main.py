@@ -65,13 +65,14 @@ class Controller():
 		self.gameState = "Start"
 		self.angle1 = 45
 		self.angle2 = 45
+		pg.key.set_repeat(1,10)
 		while True:
 			if self.gameState == "Start":
 				self.game_intro()
 				print("Start")
 				self.openingMusic 
 			elif self.gameState == "Running":
-				pg.key.set_repeat(0,10)
+			
 				self.posTup1 = []
 				self.posTup2 = []
 				for event in pg.event.get():
