@@ -23,7 +23,7 @@ class Tank(pg.sprite.Sprite):
 			self.shootyThingRect.x += self.tankSpeed
 		return self.tankRect.x, self.tankRect.y
 	    
-	def angle(self, direction, the_angle):      
+	def angle(self, direction, the_angle):
 		if direction == pg.K_UP:
 			the_angle += 1
 			for i in utility.ANGLE_DICTIONARY_2.keys():
@@ -57,8 +57,8 @@ class Tank(pg.sprite.Sprite):
 	def shoot(self, key):
 		if key == pg.K_SPACE:
 			direction = 1
-			shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, "MyBullet.png")
-		if key == pg.K_RSHIFT: #elif doesn't work what?
+			shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, the_angle, "MyBullet.png")
+		if key == pg.K_RSHIFT:
 			direction = -1
-			shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, "MyBullet2.png")
+			shot = bullet.Bullet(self.shootyThingRect.x, self.shootyThingRect.y, direction, the_angle, "MyBullet2.png")
 		return shot
