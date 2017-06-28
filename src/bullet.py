@@ -12,7 +12,7 @@ class Bullet(pg.sprite.Sprite):
 		self.bulletXSpeed = 5 * direction
 		self.bulletYSpeed = 5
 		self.bulletMaxY = 150
-        self.angle = angle
+		self.angle = angle
         
 	def update(self):
 		self.bulletRect.x += self.bulletXSpeed * cos(self.angle)
