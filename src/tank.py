@@ -39,14 +39,14 @@ class Tank(pg.sprite.Sprite):
 					self.shootyThingImage = utility.loadImage(utility.ANGLE_DICTIONARY.get(i))
 			return the_angle
 		if direction == pg.K_DOWN:
-			the_angle += 1
+			the_angle -= 1
 			for i in utility.ANGLE_DICTIONARY_2.keys():
 				diff = the_angle - i
 				if i == the_angle or (diff <= 4 and diff > 0):
 					self.shootyThingImage = utility.loadImage(utility.ANGLE_DICTIONARY_2.get(i))
 			return the_angle
 		if direction == pg.K_s:
-			the_angle += 1
+			the_angle -= 1
 			for i in utility.ANGLE_DICTIONARY.keys():
 				diff = the_angle - i
 				if i == the_angle or (diff <= 4 and diff > 0):
