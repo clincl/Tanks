@@ -8,6 +8,7 @@ class Controller():
 	def __init__(self, width=1200, height=675):
 
 		pg.init()
+		pg.mixer.init()
 		self.width = width
 		self.height = height
 		self.screen = pg.display.set_mode((self.width, self.height))
@@ -15,7 +16,7 @@ class Controller():
 		pg.display.update() 
 		self.background = u.loadImage("myBackground.png")[0]#pg.Surface(self.screen.get_size()).convert()
 		self.screen.blit(self.background, (0, 0))
-		self.wall = u.loadImage("myWall.jpg")
+		self.wall = u.loadImage("myWall.png")
 		self.screen.blit(self.wall[0],(600,375))
 		self.tank1 = tank.Tank(10, u.GROUND, "myTank.png", "myShootyThing45.png",1)
 		self.screen.blit(self.tank1.image, (100, 577))
@@ -34,7 +35,7 @@ class Controller():
 		#pg.display.set_icon(self.icon)#best size is 32*32
 		self.clock = pg.time.Clock()
 		self.buttong = pg.draw.rect(self.screen,u.GREEN,(100,500,100,50))
-		self.buttony = pg.draw.rect(self.screen,u.YELLOOW,(300,500,100,50))
+		self.buttony = pg.draw.rect(self.screen,u.YELLOW,(300,500,100,50))
 		self.buttonr = pg.draw.rect(self.screen,u.RED,(500,500,100,50))
 		
 
@@ -60,19 +61,14 @@ class Controller():
 					self.gameState = "Running"
 				if event.key == pg.K_q:
 					sys.exit()
+				if event.key == pg.K_i:
+					self.gameState = "Instructions"
 		self.screen.fill(u.WHITE)
 		self.message_to_screen("Welcome to Tanks",u.PURPLE,100,size="large")
 		self.message_to_screen("The Object of the game is to:",u.BLACK,-30,size="small")
 		self.message_to_screen("More Stuff Here",u.BLACK,45,size="small")
 		#self.message_to_screen("More Stuff Here",u.BLACK,30,size="small")
-		#self.screen.blit(self.buttonp,"MESSAGE HERE?!???")
-	def text_to_button (self,msg,color,buttonx,buttony,buttonwidth,buttonheight,size= "small")
-		self.textSurf,self.textRect = self.text_objects(msg,color,size)
-		self.textRect.center = (butttonx + (buttonwidth/2)),(buttony+(buttonheight/2))
-		self.screen.blit(self.textSurf,self.textRect)
-		return self.textSurf
-	
-		
+		#self.screen.blit(self.buttonp,"MESSAGE HERE?!???")	
 		
 		
 		
@@ -87,7 +83,7 @@ class Controller():
 				print("Start")
 
 			elif self.gameState == "Running":
-				#self.music = u.loadMusic("BattleMusic.mp3")
+				self.music = u.loadMusic("GameOver.mp3")
 				self.posTup1 = []
 				self.posTup2 = []
 				for event in pg.event.get():
@@ -131,8 +127,8 @@ class Controller():
 					self.tank2.shootyThingRect.x = self.posTup2[2]
 					self.tank2.shootyThingRect.y = self.posTup2[3]	
 				self.spritegroup.update()
-				self.tank1.health = u.collisionCheck(self.tank1, self.spritegroup)
-				self.tank2.health = u.collisionCheck(self.tank2, self.spritegroup)
+				self.tank1.health = u.collisionCheck(self.tank1, self.spritegroup, self.tank1.health)[1]
+				self.tank2.health = u.collisionCheck(self.tank2, self.spritegroup, self.tank2.health)[1]
 		
 				for i in self.spritegroup.sprites():
 					if self.wall[0].get_rect().colliderect(i.rect):
@@ -143,10 +139,11 @@ class Controller():
 					self.gameState = "Over"
 				self.screen.blit(self.background, (0, 0))
 				self.screen.blit(self.tank1.image, (self.tank1.rect.x,self.tank1.rect.y))
-				self.screen.blit(self.tank1.shootyThingImage, (self.tank1.shootyThingRect.x, self.tank2.shootyThingRect.y))
+				self.screen.blit(self.tank1.shootyThingImage, (self.tank1.shootyThingRect.x, self.tank1.shootyThingRect.y))
 				self.screen.blit(self.wall[0],(600,375))
-				self.screen.blit(self.tank2.image, (self.tank2.rect.x,self.tank2.rect.y ))
-				self.screen.blit(self.tank2.shootyThingImage, (self.tank2.shootyThingRect.x, self.tank2.shootyThingRect.y))				
+				self.screen.blit(self.tank2.image, (self.tank2.rect.x,self.tank2.rect.y))
+				print(self.tank2.shootyThingImage)
+				self.screen.blit(self.tank2.shootyThingImage, (self.tank2.shootyThingRect.x, self.tank2.shootyThingRect.y))
 				if len(self.spritegroup) >= 1:
 					for i in self.spritegroup:
 						self.screen.blit(i.bulletImage, (self.shot.rect.x,self.shot.rect.y))
@@ -166,13 +163,23 @@ class Controller():
 							sys.exit()
 							
 						if event.key == pg.K_c:
+							self.tank1.health = 50
+							self.tank2.health = 50
 							self.gameState = "Running"
 				print("Over")
 			pg.display.update()
-		pg.display.quit()		
-		pg.quit()
-		sys.exit()
-		
+			if self.gameState == "Instructions":
+				self.screen.fill(u.WHITE)
+				self.message_to_screen("For Player One: W:UP S:DOWN A:LEFT D:RIGHT", u.LIGHT_GREEN,y_displace=-10,size = "small")
+				self.message_to_screen("For Player Two: UP ARROW:UP DOWN ARROW:DOWN LEFT ARROW:LEFT RIGHT ARROW:RIGHT", u.GREEN,y_displace=-50,size = "small")
+				self.message_to_screen("GOOD LUCK!", u.GREEN,y_displace=20,size = "medium")
+				for event in pg.event.get():
+				    if event.type == pg.KEYDOWN:
+				        if event.key == pg.K_q:
+				            sys.exit()
+				        if event.key == pg.K_c:
+				            self.gameState = "Running"
+			pg.display.update()
 
 def main():
 

@@ -36,28 +36,28 @@ class Tank(pg.sprite.Sprite):
 			for i in u.ANGLE_DICTIONARY_2.keys():
 				diff = self.the_angle - i
 				if i == self.the_angle or (diff <= 4 and diff > 0):
-					self.shootyThingImage = u.loadImage(u.ANGLE_DICTIONARY_2.get(i))
+					self.shootyThingImage, junk = u.loadImage(u.ANGLE_DICTIONARY_2.get(i))
 			return self.the_angle
 		if direction == pg.K_w:
 			self.the_angle += 1
 			for i in u.ANGLE_DICTIONARY.keys():
 				diff = self.the_angle - i
 				if i == self.the_angle or (diff <= 4 and diff > 0):
-					self.shootyThingImage = u.loadImage(u.ANGLE_DICTIONARY.get(i))
+					self.shootyThingImage, junk = u.loadImage(u.ANGLE_DICTIONARY.get(i))
 			return self.the_angle
 		if direction == pg.K_DOWN:
 			self.the_angle += 1
 			for i in u.ANGLE_DICTIONARY_2.keys():
 				diff = self.the_angle - i
 				if i == self.the_angle or (diff <= 4 and diff > 0):
-					self.shootyThingImage = u.loadImage(u.ANGLE_DICTIONARY_2.get(i))
+					self.shootyThingImage, junk = u.loadImage(u.ANGLE_DICTIONARY_2.get(i))
 			return self.the_angle
 		if direction == pg.K_s:
 			self.the_angle += 1
 			for i in u.ANGLE_DICTIONARY.keys():
 				diff = self.the_angle - i
 				if i == self.the_angle or (diff <= 4 and diff > 0):
-					self.shootyThingImage = u.loadImage(u.ANGLE_DICTIONARY.get(i))
+					self.shootyThingImage, junk = u.loadImage(u.ANGLE_DICTIONARY.get(i))
 			return self.the_angle
 		return self.the_angle
 

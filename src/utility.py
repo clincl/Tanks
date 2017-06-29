@@ -30,10 +30,8 @@ def loadImage(image):
 	return image, image.get_rect()
 
 def loadMusic(music):
-	
 	musicfile = pg.mixer.music.load(music)
 	pg.mixer.music.play(-1)
-	return musicfile
 
 def testMove(iters, direction, Window, Tank):
 	for i in range(iters):
@@ -55,12 +53,12 @@ def testAngle(iters, direction, init_angle, Window, Tank):
 		print("The angle of the shootyThing is ", init_angle)
 	return init_angle
 
-def collisionCheck(MainObject, group):
+def collisionCheck(MainObject, group, MOH):
 	col = pg.sprite.spritecollide(MainObject, group,True)
 	for i in col:
 		group.remove(i)
-		MainObject.health -= 10
-	return MainObject
+		MOH -= 10
+	return MainObject, MOH
 
 def groundCheck(group):	
 	for i in group:
