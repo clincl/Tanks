@@ -10,7 +10,13 @@ BLACK = (0,0,0)
 WHITE = (255, 255, 255)
 PURPLE = (216, 191, 216)
 YELLOW = (255, 255, 51)
-GRAVITY = 10
+GRAVITY = 1
+RED = (200,0,0)
+LIGHT_RED = (255,0,0)
+YELLOW = (200,200,0)
+LIGHT_YELLOW = (255,255,0)
+GREEN = (34,177,76)
+LIGHT_GREEN = (0,255,0)
 INVALID_INPUTS = [pg.K_4, pg.K_h, pg.K_i, pg.K_SEMICOLON, pg.K_MINUS, pg.K_LEFTBRACKET, pg.K_QUESTION, pg.K_HASH, pg.K_v, pg.K_KP4]
 TANK_INPUTS = [pg.K_UP, pg.K_DOWN, pg.K_w, pg.K_s, pg.K_SPACE, pg.K_RSHIFT]
 SHOOTYTHING_INPUTS = [pg.K_LEFT, pg.K_RIGHT, pg.K_a, pg.K_d, pg.K_SPACE, pg.K_RSHIFT]
@@ -23,10 +29,11 @@ def loadImage(image):
 	image = pg.image.load(filename).convert_alpha()
 	return image, image.get_rect()
 
-def loadMusic(muse):
+def loadMusic(music):
 	
-	musicfile = pg.mixer.music.load(muse)
-	music = pg.mixer.music.play(-1)
+	musicfile = pg.mixer.music.load(music)
+	pg.mixer.music.play(-1)
+	return musicfile
 
 def testMove(iters, direction, Window, Tank):
 	for i in range(iters):
@@ -52,6 +59,9 @@ def collisionCheck(MainObject, group):
 	col = pg.sprite.spritecollide(MainObject, group,True)
 	for i in col:
 		group.remove(i)
+		MainObject.health -= 10
+	return MainObject
+
 def groundCheck(group):	
 	for i in group:
 		if i.rect.x < 250:
