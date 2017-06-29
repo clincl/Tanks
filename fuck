@@ -1,0 +1,12 @@
+if self.gameState == "Instructions":
+				self.screen.fill(u.WHITE)
+				self.message_to_screen("For Player One: W:UP S:DOWN A:LEFT D:RIGHT", u.LIGHT_GREEN,y_displace=-10,size = "small")
+				self.message_to_screen("For Player Two: UP ARROW:UP DOWN ARROW:DOWN LEFT ARROW:LEFT RIGHT ARROW:RIGHT", u.GREEN,y_displace=-50,size = "small")
+				self.message_to_screen("GOOD LUCK!", u.GREEN,y_displace=20,size = "medium")
+				for event in pg.event.get():
+				    if event.type == pg.KEYDOWN:
+				        if event.key == pg.K_q:
+				            sys.exit()
+				        if event.key == pg.K_c:
+				            self.gameState = "Running"
+			pg.display.update()
