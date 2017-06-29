@@ -33,6 +33,9 @@ class Controller():
 		pg.display.flip()
 		#pg.display.set_icon(self.icon)#best size is 32*32
 		self.clock = pg.time.Clock()
+		self.buttong = pg.draw.rect(self.screen,u.GREEN,(100,500,100,50))
+		self.buttony = pg.draw.rect(self.screen,u.YELLOOW,(300,500,100,50))
+		self.buttonr = pg.draw.rect(self.screen,u.RED,(500,500,100,50))
 		
 
 	def text_objects(self,text,color,size):
@@ -61,7 +64,17 @@ class Controller():
 		self.message_to_screen("Welcome to Tanks",u.PURPLE,100,size="large")
 		self.message_to_screen("The Object of the game is to:",u.BLACK,-30,size="small")
 		self.message_to_screen("More Stuff Here",u.BLACK,45,size="small")
-		self.message_to_screen("More Stuff Here",u.BLACK,30,size="small")
+		#self.message_to_screen("More Stuff Here",u.BLACK,30,size="small")
+		#self.screen.blit(self.buttonp,"MESSAGE HERE?!???")
+	def text_to_button (self,msg,color,buttonx,buttony,buttonwidth,buttonheight,size= "small")
+		self.textSurf,self.textRect = self.text_objects(msg,color,size)
+		self.textRect.center = (butttonx + (buttonwidth/2)),(buttony+(buttonheight/2))
+		self.screen.blit(self.textSurf,self.textRect)
+		return self.textSurf
+	
+		
+		
+		
 		
 	def gameLoop(self):
 		self.gameState = "Start"
