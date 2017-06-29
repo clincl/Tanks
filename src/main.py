@@ -17,19 +17,17 @@ class Controller():
 		self.screen.blit(self.background, (0, 0))
 		self.wall = u.loadImage("myWall.jpg")
 		self.screen.blit(self.wall[0],(600,375))
-		self.tank1 = tank.Tank(10, u.GROUND, "myTank.png", "myShootyThing.png",1)
+		self.tank1 = tank.Tank(10, u.GROUND, "myTank.png", "myShootyThing45.png",1)
 		self.screen.blit(self.tank1.image, (100, 577))
 		self.screen.blit(self.tank1.shootyThingImage, (0, 0))
-		self.tank2 = tank.Tank(-10, u.GROUND, "myTank2.png", "myShootyThing2.png",2)
+		self.tank2 = tank.Tank(-10, u.GROUND, "myTank2.png", "myShootyThing2_45.png",2)
 		self.screen.blit(self.tank2.image, (1100, 577))
 		self.screen.blit(self.tank2.shootyThingImage, (0, 0))
 		self.spritegroup = pg.sprite.Group()
 		self.smallfont = pg.font.SysFont("comicsansms",25)
 		self.medfont = pg.font.SysFont("comicsansms",50)
 		self.largefont = pg.font.SysFont("comicsansms",80)
-		self.openingMusic = u.loadMusic("IntroMusic.mp3")
-		self.battleMusic = u.loadMusic("BattleMusic.mp3")
-		self.gameOver = u.loadMusic("GameOver.mp3")
+		self.music = u.loadMusic("IntroMusic.mp3")		
 		#self.icon = pg.image.load('myTank.png')
 		pg.sprite.RenderPlain()
 		pg.display.flip()
@@ -74,9 +72,9 @@ class Controller():
 			if self.gameState == "Start":
 				self.game_intro()
 				print("Start")
-				self.openingMusic 
+
 			elif self.gameState == "Running":
-				self.battleMusic
+				#self.music = u.loadMusic("BattleMusic.mp3")
 				self.posTup1 = []
 				self.posTup2 = []
 				for event in pg.event.get():
@@ -120,13 +118,16 @@ class Controller():
 					self.tank2.shootyThingRect.x = self.posTup2[2]
 					self.tank2.shootyThingRect.y = self.posTup2[3]	
 				self.spritegroup.update()
-				u.collisionCheck(self.tank1, self.spritegroup)
-				u.collisionCheck(self.tank2, self.spritegroup)
+				self.tank1.health = u.collisionCheck(self.tank1, self.spritegroup)
+				self.tank2.health = u.collisionCheck(self.tank2, self.spritegroup)
+		
 				for i in self.spritegroup.sprites():
 					if self.wall[0].get_rect().colliderect(i.rect):
 						self.spritegroup.remove(i)
 				u.groundCheck(self.spritegroup)
 				print(self.tank1.rect.x, self.tank2.rect.x)
+				if self.tank1.health == 0 or self.tank2.health == 0:
+					self.gameState = "Over"
 				self.screen.blit(self.background, (0, 0))
 				self.screen.blit(self.tank1.image, (self.tank1.rect.x,self.tank1.rect.y))
 				self.screen.blit(self.tank1.shootyThingImage, (self.tank1.shootyThingRect.x, self.tank2.shootyThingRect.y))
@@ -137,11 +138,15 @@ class Controller():
 					for i in self.spritegroup:
 						self.screen.blit(i.bulletImage, (self.shot.rect.x,self.shot.rect.y))
 			elif self.gameState == "Over":
-				self.gameOver
+				self.music = u.loadMusic("GameOver.mp3")
 				self.screen.fill(u.WHITE)  #ExitScreen
 				self.message_to_screen("Game Over press C to play again or Q to Quit", u.RED,y_displace=-50,size = "medium")
+				if self.tank1.health == 0:
+					self.message_to_screen("Player Two Wins",u.GREEN, y_displace = -45,size = "medium")	
+				elif self.tank1.health == 0: 	
+					self.message_to_screen("Player One Wins",u.GREEN,y_displace = -45,size = "medium")				
 				pg.display.update()
-
+	
 				for event in pg.event.get():
 					if event.type == pg.KEYDOWN:
 						if event.key == pg.K_q:
@@ -151,6 +156,10 @@ class Controller():
 							self.gameState = "Running"
 				print("Over")
 			pg.display.update()
+		pg.display.quit()		
+		pg.quit()
+		sys.exit()
+		
 
 def main():
 
