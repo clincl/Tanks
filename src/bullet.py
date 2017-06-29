@@ -1,33 +1,29 @@
 import pygame as pg
-import math
 import utility as u
 
 class Bullet(pg.sprite.Sprite):
-
-	def __init__(self, x, y, direction, angle, bulletImg):
+    
+	def __init__(self, x, y, direction, bulletImg):
 		pg.sprite.Sprite.__init__(self)
-		self.bulletImage, self.bulletRect = u.loadImage(bulletImg)
-		self.bulletRect.x = x + 75
-		self.bulletRect.y = y
-		self.bulletXSpeed = 5 * direction
-		self.bulletYSpeed = 5
-		#self.bulletMaxY = 150
-		self.angle = angle
-        
-	def update(self):
-		self.bulletRect.x += self.bulletXSpeed * math.cos(self.angle)
-		t = 0
-		while self.bulletYSpeed > 0:
-			t +=1
-			self.bulletYSpeed += u.GRAVITY * t #as t increases speed drops
-			self.bulletRect.y += ((self.bulletYSpeed * math.sin(self.angle)) * t) + ((u.GRAVITY/2) * t**2)
-		if self.bulletYSpeed <= 0:
-			while self.bulletRect.y > u.GROUND:
-				t -= 1
-				self.bulletYSpeed -= u.GRAVITY * t #as t increases speed increases
-				self.bulletRect.y += ((self.bulletYSpeed * math.sin(self.angle)) * t) + ((u.GRAVITY/2) * t**2)
+		self.bulletImage, self.rect = u.loadImage(bulletImg)
+		self.vel = 50
+		self.grav = 10
+		self.rect.x = x + 75
+		self.rect.y = y
+		self.bulletXSpeed = 1 * direction
+		self.bulletYSpeed = 1
+		self.direct = 1
+		self.YIncr = 1
 
-				
-		#if self.bulletY == self.bulletMaxY:
-		#	self.bulletYSpeed *= -1
-		return self.bulletRect.x, self.bulletRect.y
+
+	def update(self):
+		if True:
+			self.vel += self.grav
+			self.rect.x += self.bulletXSpeed
+			self.rect.y -= self.bulletYSpeed * self.direct * self.YIncr
+			self.YIncr -= 0.005
+			if self.rect.y <= 0:
+				direction = self.direct * -1
+				self.direct = direction
+				self.YIncr *= -1
+		return (self.bulletImage, self.rect.x, self.rect.y)
